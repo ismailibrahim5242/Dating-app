@@ -1,12 +1,11 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Link, useNavigate } from 'react-router-dom';  // Import useNavigate for navigation
+import { Link, useNavigate } from 'react-router-dom';
 import loginbg from "../../assets/loginLogo.svg";
 import background from "../../assets/Bg.jpeg";
 import bcrypt from 'bcryptjs';
 
-// Validation schema using Yup
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
     .min(3, 'Too Short!')
@@ -20,16 +19,13 @@ const SignupSchema = Yup.object().shape({
 });
 
 const Signup = () => {
-  const navigate = useNavigate();  // Hook for navigation
+  const navigate = useNavigate(); 
 
   const handleSignup = (values, { setSubmitting }) => {
-    // Get existing users from localStorage or set an empty array
     const users = JSON.parse(localStorage.getItem('users')) || [];
 
-    // Hash the password
     const hashedPassword = bcrypt.hashSync(values.password, 10);
 
-    // Create a new user object
     const newUser = {
       username: values.username,
       email: values.email,
@@ -38,13 +34,12 @@ const Signup = () => {
       dob: values.dob,
     };
 
-    // Save the new user in localStorage
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
 
-    // Redirect to login page after signup
+   
     alert('Signup successful');
-    navigate('/user/login');  // Redirect to login page
+    navigate('/user/login');  
 
     setSubmitting(false);
   };
@@ -146,7 +141,7 @@ const Signup = () => {
                   {isSubmitting ? 'Submitting...' : 'Sign Up'}
                 </button>
 
-                {/* Login prompt */}
+                
                 <div className="text-center text-light mt-3">
                   Already have an account? <Link to="/user/login" className="text-primary">Login</Link>
                 </div>

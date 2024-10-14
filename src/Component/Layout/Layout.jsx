@@ -1,12 +1,12 @@
-import React from 'react'
-import Home from '../Home/Home'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 
-const Layout = () => {
+const Layout = ({ children }) => {
   return (
     <>
-    <Home/>
+    <Outlet/>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

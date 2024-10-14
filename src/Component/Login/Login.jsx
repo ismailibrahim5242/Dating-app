@@ -1,41 +1,45 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { Link, useNavigate } from 'react-router-dom';  // Import Link and useNavigate for navigation
+import { useNavigate, Link } from 'react-router-dom';
 import loginbg from "../../assets/loginLogo.svg";
 import background from "../../assets/Bg.jpeg";
-import bcrypt from 'bcryptjs';  // Import bcrypt to compare hashed passwords
+import bcrypt from 'bcryptjs'; 
 
-// Validation schema using Yup
+
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string().min(6, 'Password must be at least 6 characters long').required('Password is required')
 });
 
 const Login = () => {
-  const navigate = useNavigate();  // For programmatic navigation after login
+  const navigate = useNavigate();
 
   const handleLogin = (values, { setSubmitting }) => {
     const users = JSON.parse(localStorage.getItem('users')) || [];
+    console.log("Users from localStorage: ", users);
 
-    // Check if the user exists
+   
     const user = users.find(user => user.email === values.email);
+    console.log("User found: ", user); 
 
     if (user) {
-      // Compare the entered password with the stored hashed password
       const passwordMatch = bcrypt.compareSync(values.password, user.password);
+      console.log("Password match: ", passwordMatch);
 
       if (passwordMatch) {
         alert('Login successful');
-        navigate('/dashboard');  // Redirect to the dashboard or any protected route after login
+        localStorage.setItem("loggedInUserEmail", values.email);
+        console.log('Navigating to dashboard');
+        navigate('/dashboard'); 
       } else {
-        alert('Invalid password');
+        alert('Invalid password'); 
       }
     } else {
-      alert('No account found with this email');
+      alert('No account found with this email'); 
     }
 
-    setSubmitting(false);
+    setSubmitting(false); 
   };
 
   return (
@@ -83,7 +87,7 @@ const Login = () => {
                   {isSubmitting ? 'Logging in...' : 'Login'}
                 </button>
 
-                {/* Signup prompt */}
+               
                 <div className="text-center text-light mt-3">
                   Don't have an account? <Link to="/user/signup" className="text-primary">Sign Up</Link>
                 </div>
