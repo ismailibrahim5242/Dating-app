@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaEdit, FaTrashAlt, FaUpload } from 'react-icons/fa';  // Importing icons
 
 const Dashboard = () => {
   const [username, setUsername] = useState('');
@@ -89,34 +90,29 @@ const Dashboard = () => {
           {profilePicture ? (
             <>
               <img src={profilePicture} alt="Profile" className="profile-picture-img" />
-              {/* Change and Delete buttons */}
-              <div className="profile-picture-actions">
-                <button className="change-button">
-                  <label htmlFor="file-input">Change</label>
-                  <input
-                    id="file-input"
-                    type="file"
-                    accept="image/*"
-                    onChange={handlePictureUpload}
-                    style={{ display: 'none' }}
-                  />
-                </button>
-                <button className="delete-button" onClick={handleDeleteProfilePicture}>
-                  Delete
-                </button>
-              </div>
             </>
           ) : (
             <div className="default-profile-picture">
-              No Image
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handlePictureUpload}
-                className="file-input"
-              />
+              <FaUpload /> No Image
             </div>
           )}
+        </div>
+
+        {/* Action buttons for changing and deleting the profile picture */}
+        <div className="profile-picture-actions">
+          <button className="icon-button change-button">
+            <FaEdit /> Change
+            <input
+              id="file-input"
+              type="file"
+              accept="image/*"
+              onChange={handlePictureUpload}
+              style={{ display: 'none' }}
+            />
+          </button>
+          <button className="icon-button delete-button" onClick={handleDeleteProfilePicture}>
+            <FaTrashAlt /> Delete
+          </button>
         </div>
       </div>
 
