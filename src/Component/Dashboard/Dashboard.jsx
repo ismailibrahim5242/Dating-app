@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaEdit, FaTrashAlt, FaUpload, FaBell, FaCog } from 'react-icons/fa';  // Importing icons
+import { FaEdit, FaTrashAlt, FaUpload, FaBell, FaCog } from 'react-icons/fa';
 
 const Dashboard = () => {
   const [username, setUsername] = useState('');
   const [profilePicture, setProfilePicture] = useState(null);
   const [showAccountDropdown, setShowAccountDropdown] = useState(false);
+  const [showSettingsDropdown, setShowSettingsDropdown] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -85,19 +86,14 @@ const Dashboard = () => {
           <button className="icon-button" onClick={() => console.log("Notifications")}>
             <FaBell />
           </button>
-          <button className="icon-button" onClick={() => console.log("Settings")}>
-            <FaCog />
-          </button>
-
-          {/* Account Button in Navbar */}
           <div className="account-dropdown-container">
             <button 
-              className="icon-button account-button" 
+              className="dashboard-button" 
               onClick={() => setShowAccountDropdown(!showAccountDropdown)}
             >
               Account
             </button>
-
+          
             {showAccountDropdown && (
               <div className="account-dropdown">
                 <p><strong>Email:</strong> {userEmail}</p>
@@ -108,6 +104,27 @@ const Dashboard = () => {
               </div>
             )}
           </div>
+
+          <div className="settings-dropdown-container">
+            <button className="icon-button" onClick={() => setShowSettingsDropdown(!showSettingsDropdown)}>
+              <FaCog />
+            </button>
+
+            {showSettingsDropdown && (
+              <div className="settings-dropdown">
+                <button className="dropdown-item" onClick={() => console.log("Edit Profile")}>
+                  Edit Profile
+                </button>
+                <button className="dropdown-item" onClick={() => console.log("Security")}>
+                  Security
+                </button>
+                <button className="dropdown-item" onClick={() => console.log("Biometric")}>
+                  Biometric
+                </button>
+              </div>
+            )}
+          </div>
+
           <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>
       </nav>
