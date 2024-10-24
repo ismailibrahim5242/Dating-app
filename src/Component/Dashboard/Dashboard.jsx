@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaEdit, FaTrashAlt, FaUpload } from 'react-icons/fa';  // Importing icons
+import { FaEdit, FaTrashAlt, FaUpload, FaBell, FaCog } from 'react-icons/fa';  // Importing icons
 
 const Dashboard = () => {
   const [username, setUsername] = useState('');
@@ -25,8 +25,6 @@ const Dashboard = () => {
       if (storedProfilePicture) {
         setProfilePicture(storedProfilePicture);
       }
-    } else {
-      console.error("No user found");
     }
   }, []);
 
@@ -71,75 +69,79 @@ const Dashboard = () => {
       localStorage.setItem('users', JSON.stringify(updatedUsers));
 
       localStorage.removeItem(`profilePicture_${loggedInUserEmail}`);
-
       handleLogout();
     }
   };
 
   return (
     <div className="dashboard-container">
-      <div className="dashboard-header">
-        <h1>Welcome, {username}</h1>
-        <button className="logout-button" onClick={handleLogout}>
-          Logout
-        </button>
-      </div>
+      {/* NAVBAR */}
+      <nav className="navbar">
+        <div className="navbar-left">
+          <h2>My Dashboard</h2>
+        </div>
+        <div className="navbar-right">
+          <span className="username">Welcome, {username}</span>
+          <button className="icon-button" onClick={() => console.log("Notifications")}>
+            <FaBell />
+          </button>
+          <button className="icon-button" onClick={() => console.log("Settings")}>
+            <FaCog />
+          </button>
 
-      <div className="profile-section">
-        <div className="profile-picture">
-          {profilePicture ? (
-            <>
+          {/* Account Button in Navbar */}
+          <div className="account-dropdown-container">
+            <button 
+              className="icon-button account-button" 
+              onClick={() => setShowAccountDropdown(!showAccountDropdown)}
+            >
+              Account
+            </button>
+
+            {showAccountDropdown && (
+              <div className="account-dropdown">
+                <p><strong>Email:</strong> {userEmail}</p>
+                <p><strong>Password:</strong> {'•'.repeat(8)}</p>
+                <button className="deactivate-button" onClick={handleDeactivateAccount}>
+                  Deactivate Account
+                </button>
+              </div>
+            )}
+          </div>
+          <button className="logout-button" onClick={handleLogout}>Logout</button>
+        </div>
+      </nav>
+
+      {/* MAIN CONTENT */}
+      <div className="dashboard-main">
+        <div className="profile-section">
+          <div className="profile-picture">
+            {profilePicture ? (
               <img src={profilePicture} alt="Profile" className="profile-picture-img" />
-            </>
-          ) : (
-            <div className="default-profile-picture">
-              <FaUpload /> No Image
-            </div>
-          )}
-        </div>
+            ) : (
+              <div className="default-profile-picture">
+                <FaUpload /> No Image
+              </div>
+            )}
+          </div>
 
-        {/* Action buttons for changing and deleting the profile picture */}
-        <div className="profile-picture-actions">
-          <button className="icon-button change-button">
-            <FaEdit /> Change
-            <input
-              id="file-input"
-              type="file"
-              accept="image/*"
-              onChange={handlePictureUpload}
-              style={{ display: 'none' }}
-            />
-          </button>
-          <button className="icon-button delete-button" onClick={handleDeleteProfilePicture}>
-            <FaTrashAlt /> Delete
-          </button>
-        </div>
-      </div>
-
-      <div className="dashboard-menu">
-        <button 
-          className="dashboard-button" 
-          onClick={() => setShowAccountDropdown(!showAccountDropdown)}
-        >
-          Account
-        </button>
-        
-        {showAccountDropdown && (
-          <div className="account-dropdown">
-            <p><strong>Email:</strong> {userEmail}</p>
-            <p><strong>Password:</strong> {'•'.repeat(8)}</p>
-            <button className="deactivate-button" onClick={handleDeactivateAccount}>
-              Deactivate Account
+          {/* Edit and Delete Buttons below the profile picture */}
+          <div className="profile-picture-actions">
+            <label className="icon-button change-button">
+              <FaEdit /> Change
+              <input
+                id="file-input"
+                type="file"
+                accept="image/*"
+                onChange={handlePictureUpload}
+                style={{ display: 'none' }}
+              />
+            </label>
+            <button className="icon-button delete-button" onClick={handleDeleteProfilePicture}>
+              <FaTrashAlt /> Delete
             </button>
           </div>
-        )}
-
-        <button className="dashboard-button" onClick={() => console.log("Settings opened")}>
-          Settings
-        </button>
-        <button className="dashboard-button" onClick={() => console.log("Notifications opened")}>
-          Notifications
-        </button>
+        </div>
       </div>
     </div>
   );

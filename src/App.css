@@ -118,193 +118,226 @@
 
 /* DASH  BOARD    */
 
-/* General Styles */
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #000000b2;
-  color: white; 
-}
-
 .dashboard-container {
-  width: 90%;
-  margin: auto;
-  font-family: "Arial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
 }
 
-.dashboard-header {
+.navbar {
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.navbar-left h2 {
+  margin: 0;
+}
+
+.navbar-right {
+  display: flex;
   align-items: center;
 }
 
+.username {
+  margin-right: 10px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  margin: 0 5px;
+  cursor: pointer;
+  position: relative;
+}
+
 .logout-button {
-  padding: 10px 20px;
-  background-color: #e74c3c;
+  background-color: #f44336;
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 5px 10px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
-.logout-button:hover {
-  background-color: #c0392b;
-}
-
-/* Profile Section */
-.profile-section {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.profile-picture {
+.account-dropdown-container {
   position: relative;
-  width: 150px;
-  height: 150px;
-  margin: auto;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 4px solid #ddd;
 }
 
-.profile-picture img {
-  width: 100%;
-  height: 100%;
+.account-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.account-dropdown {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background-color: #fff;
+  color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.profile-section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-picture-img, .default-profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
   object-fit: cover;
-}
-
-.default-profile-picture {
-  font-size: 1.2em;
-  color: #888;
-  padding: 50px;
-  border-radius: 50%;
-  border: 4px solid #ddd;
+  border: 2px solid #333;
 }
 
 .profile-picture-actions {
   display: flex;
-  justify-content: center;
-  margin-top: 15px;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .icon-button {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 10px 15px;
-  margin: 0 10px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  gap: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  background: none;
+  border: none;
+}
+
+.icon-button.change-button, .icon-button.delete-button {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
 }
 
 .icon-button.delete-button {
-  background-color: #e74c3c;
+  background-color: #f44336;
 }
 
-.icon-button:hover {
-  background-color: #2980b9;
-}
-
-.icon-button.delete-button:hover {
-  background-color: #c0392b;
-}
-
-/* Menu and Buttons */
-.dashboard-menu {
+.account-section {
   margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
 }
 
 .dashboard-button {
-  margin: 80px 10px;
-  padding: 10px 20px;
-  background-color: #3498db;
+  background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.dashboard-button:hover {
-  background-color: #2980b9;
-}
-
-.account-dropdown {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #f0f0f0;
   border-radius: 5px;
+  margin-top: 10px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .dashboard-container {
-    width: 95%;
-    padding: 15px;
-  }
+.deactivate-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
 
-  .dashboard-header {
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+  .navbar {
     flex-direction: column;
     align-items: flex-start;
-    text-align: center;
   }
 
-  .logout-button {
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .profile-picture {
-    width: 120px;
-    height: 120px;
-  }
-
-  .profile-picture-actions {
+  .navbar-right {
     flex-direction: column;
+    align-items: flex-start;
     margin-top: 10px;
   }
 
   .icon-button {
-    margin: 10px 0;
-    width: 100%;
+    font-size: 1rem;
   }
 
-  .dashboard-menu {
+  .logout-button {
+    padding: 5px 8px;
+    font-size: 0.9rem;
+  }
+
+  .profile-picture-img, .default-profile-picture {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-picture-actions {
     flex-direction: column;
-    width: 100%;
+    gap: 5px;
   }
 
-  .dashboard-button {
+  .icon-button.change-button, .icon-button.delete-button {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+  }
+
+  .account-dropdown {
+    top: 50px;
     width: 100%;
-    margin: 10px 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    box-sizing: border-box;
   }
 }
 
 @media (max-width: 480px) {
-  .profile-picture {
-    width: 100px;
-    height: 100px;
+  .navbar-right {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .profile-section {
-    margin-top: 10px;
+  .username {
+    font-size: 0.9rem;
   }
 
-  .dashboard-header h1 {
-    font-size: 1.2em;
+  .icon-button {
+    font-size: 0.9rem;
+    margin: 0 3px;
   }
 
-  .dashboard-button {
-    padding: 8px;
-    font-size: 0.9em;
+  .logout-button {
+    padding: 4px 7px;
+    font-size: 0.8rem;
+  }
+
+  .profile-picture-img, .default-profile-picture {
+    width: 70px;
+    height: 70px;
+  }
+
+  .profile-picture-actions {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .icon-button.change-button, .icon-button.delete-button {
+    font-size: 0.7rem;
+    padding: 4px 7px;
   }
 }
+
+
