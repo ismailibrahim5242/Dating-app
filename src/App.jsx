@@ -8,6 +8,7 @@ import Layout from "./Component/Layout/Layout";
 import Dashboard from "./Component/Dashboard/Dashboard";
 import Home from "./Component/Home/Home";
 import Otp from "./Component/OTP/Otp";
+import HomePage from "./Component/Home D/HomePage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="" element={<Home />} /> 
         <Route path="dashboard" element={<Dashboard />} /> 
         <Route path="Otp" element={<Otp />} /> 
+        <Route path="Home D" element={<HomePage />} /> 
 
 
       </Route>

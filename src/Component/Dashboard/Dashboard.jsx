@@ -129,7 +129,7 @@ const Dashboard = () => {
         </div>
       </nav>
 
-      {/* MAIN CONTENT */}
+      /* MAIN CONTENT */
       <div className="dashboard-main">
         <div className="profile-section">
           <div className="profile-picture">
@@ -142,7 +142,7 @@ const Dashboard = () => {
             )}
           </div>
 
-          {/* Edit and Delete Buttons below the profile picture */}
+          /* Edit and Delete Buttons below the profile picture */
           <div className="profile-picture-actions">
             <label className="icon-button change-button">
               <FaEdit /> Change
