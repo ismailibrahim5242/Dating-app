@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import { FaHome, FaComments, FaCamera, FaBell, FaCog } from 'react-icons/fa';
+import './HomePage.css'
 
 const HomePage = () => {
   return (
