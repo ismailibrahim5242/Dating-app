@@ -24,16 +24,20 @@
   gap: 15px;
 }
 
+.username {
+  font-weight: 700;
+  margin-right: auto; /* Provides flexibility on larger screens */
+}
 
-.icon-button {
+/* Button styles for dashboard actions */
+.dashboard-button {
   background: none;
   border: none;
   color: #ffffff;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
   display: flex;
-  align-items: center;  
-  position: relative;
+  align-items: center;
 }
 
 .icon-button .dropdown-indicator {
@@ -41,21 +45,14 @@
   font-size: 0.8rem;
 }
 
-
-.username {
-  margin-right: 500px;
-  font-weight: 700;
-}
-
-
 .account-dropdown-container {
-  position: relative; 
+  position: relative;
 }
 
 .account-dropdown {
   position: absolute;
   right: 0;
-  top: 100%; 
+  top: 100%;
   background-color: #ffffff;
   color: #333;
   padding: 10px;
@@ -75,51 +72,37 @@
   width: 100%;
 }
 
-
-.settings-dropdown-container {
-  position: relative; 
-}
-
 .settings-dropdown {
   position: absolute;
   right: 190px;
-  top: 100%; 
+  top: 100%;
   background-color: #ffffff;
   color: #333;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   min-width: 170px;
-  z-index: 100;
   display: flex;
   flex-direction: column;
   gap: 10px;
   z-index: 100;
-}
-
-
-
-
-.Notification-dropdown-container {
-  position: relative; 
 }
 
 .Notification-dropdown {
   position: absolute;
   right: 320px;
-  top: 100%; 
+  top: 100%;
   background-color: #ffffff;
   color: #333;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   min-width: 170px;
-  z-index: 100;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  z-index: 100;
 }
-
 
 .dropdown-item {
   padding: 8px 12px;
@@ -136,7 +119,7 @@
   background-color: #e7e7e7;
 }
 
-/* Logout Button */
+/* Logout button styles */
 .logout-button {
   background-color: #f44336;
   color: #ffffff;
@@ -146,10 +129,10 @@
   border-radius: 5px;
 }
 
-
+/* Profile section styles */
 .profile-section {
   margin-top: 20px;
-  text-align:left;
+  text-align: left;
 }
 
 .profile-picture-img, .default-profile-picture {
@@ -189,45 +172,78 @@
   .navbar-right {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
     margin-top: 10px;
   }
 
-  .profile-picture-img, .default-profile-picture {
-    width: 80px;
-    height: 80px;
+  .username {
+    margin: 0;
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .dashboard-button,
+  .logout-button {
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Adjust dropdowns for mobile */
+  .account-dropdown,
+  .settings-dropdown,
+  .Notification-dropdown {
+    width: 100%;
+    left: 0;
+    right: 0;
+    padding: 10px 20px;
+    box-sizing: border-box;
+  }
+
+  /* Profile section adjustments */
+  .profile-section {
+    text-align: center;
   }
 
   .profile-picture-actions {
     flex-direction: column;
+    align-items: center;
     gap: 5px;
+  }
+
+  .icon-button.change-button,
+  .icon-button.delete-button {
+    width: 100%;
+    text-align: center;
   }
 }
 
 @media (max-width: 480px) {
   .username {
     font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-align: center;
   }
 
   .icon-button {
-    font-size: 0.9rem;
-  }
-
-  .logout-button {
-    padding: 4px 7px;
     font-size: 0.8rem;
   }
 
-  .profile-picture-img, .default-profile-picture {
-    width: 70px;
-    height: 70px;
+  .profile-picture-img,
+  .default-profile-picture {
+    width: 60px;
+    height: 60px;
   }
 
-  .icon-button.change-button, .icon-button.delete-button {
+  .icon-button.change-button,
+  .icon-button.delete-button {
     font-size: 0.8rem;
-    padding: 5px 8px;
+    padding: 5px;
   }
 
-  .account-dropdown, .settings-dropdown {
+  .account-dropdown, 
+  .settings-dropdown,
+  .Notification-dropdown {
     width: 100%;
     padding: 10px 15px;
     left: 0;
