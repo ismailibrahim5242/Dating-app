@@ -10,7 +10,6 @@ const Dashboard = () => {
   const [showSettingsDropdown, setShowSettingsDropdown] = useState(false);
   const [showNotificationDropdown, setShowNotificationDropdown] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,7 +21,6 @@ const Dashboard = () => {
     if (user) {
       setUsername(user.username);
       setUserEmail(user.email);
-      setPassword(user.password);
 
       const storedProfilePicture = localStorage.getItem(
         `profilePicture_${user.email}`
@@ -87,7 +85,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <nav className="navbar">
+      <header className="navbar">
         <div className="navbar-right">
           <span className="username">Welcome, {username}</span>
 
@@ -112,16 +110,13 @@ const Dashboard = () => {
               className="dashboard-button"
               onClick={() => setShowAccountDropdown(!showAccountDropdown)}
             >
-              Account <FaChevronDown className="dropdown-indicator" />
+              Accounts <FaChevronDown className="dropdown-indicator" />
             </button>
 
             {showAccountDropdown && (
               <div className="account-dropdown">
                 <p>
                   <strong>Email:</strong> {userEmail}
-                </p>
-                <p>
-                  <strong>Password:</strong> {"•".repeat(8)}
                 </p>
                 <button
                   className="deactivate-button"
@@ -147,12 +142,6 @@ const Dashboard = () => {
               >
                 Security
               </button>
-              <button
-                className="dropdown-item"
-                onClick={() => console.log("Biometric")}
-              >
-                Biometric
-              </button>
             </div>
           )}
 
@@ -170,12 +159,6 @@ const Dashboard = () => {
               >
                 Email Notification
               </button>
-              <button
-                className="dropdown-item"
-                onClick={() => console.log("Sms Notification")}
-              >
-                Sms Notification
-              </button>
             </div>
           )}
 
@@ -183,16 +166,16 @@ const Dashboard = () => {
             Logout
           </button>
         </div>
-      </nav>
+      </header>
 
-      {/* MAIN CONTENT */}
-      <div className="dashboard-main">
-        <div className="profile-section">
+      <main className="dashboard-main">
+        <section className="profile-section">
+          <h2 className="profile-header">Profile</h2>
           <div className="profile-picture">
             {profilePicture ? (
               <img
                 src={profilePicture}
-                alt="Profile"
+                alt={`${username}'s profile`}
                 className="profile-picture-img"
               />
             ) : (
@@ -202,7 +185,6 @@ const Dashboard = () => {
             )}
           </div>
 
-          {/* Edit and Delete Buttons below the profile picture */}
           <div className="profile-picture-actions">
             <label className="icon-button change-button">
               <FaEdit /> Change
@@ -221,8 +203,8 @@ const Dashboard = () => {
               <FaTrashAlt /> Delete
             </button>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 };
