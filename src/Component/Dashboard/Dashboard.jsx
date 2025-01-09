@@ -6,7 +6,7 @@ import "./Dashboard.css";
 const Dashboard = () => {
   const [username, setUsername] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
-  const [showAccountDropdown, setShowAccountDropdown] = useState(false);
+  const [showAccountsDropdown, setShowAccountsDropdown] = useState(false);
   const [showSettingsDropdown, setShowSettingsDropdown] = useState(false);
   const [showNotificationDropdown, setShowNotificationDropdown] = useState(false);
   const [userEmail, setUserEmail] = useState("");
@@ -108,12 +108,12 @@ const Dashboard = () => {
           <div className="account-dropdown-container">
             <button
               className="dashboard-button"
-              onClick={() => setShowAccountDropdown(!showAccountDropdown)}
+              onClick={() => setShowAccountsDropdown(!showAccountsDropdown)}
             >
               Accounts <FaChevronDown className="dropdown-indicator" />
             </button>
 
-            {showAccountDropdown && (
+            {showAccountsDropdown && (
               <div className="account-dropdown">
                 <p>
                   <strong>Email:</strong> {userEmail}
@@ -170,7 +170,7 @@ const Dashboard = () => {
 
       <main className="dashboard-main">
         <section className="profile-section">
-          <h2 className="profile-header">Profile</h2>
+          <h2 className="profile-header">PROFILE</h2>
           <div className="profile-picture">
             {profilePicture ? (
               <img
