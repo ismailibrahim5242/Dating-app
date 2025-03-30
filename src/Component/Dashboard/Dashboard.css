@@ -60,7 +60,6 @@
 .Notification-dropdown {
   position: absolute;
   top: 2.5rem;
-  right: 0;
   background-color: white;
   border: 5px solid #ddd;
   border-radius: 6px;
